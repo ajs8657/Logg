@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 namespace Logg {
 
@@ -15,53 +16,40 @@ namespace Logg {
 
     void Logger::Debug(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << "[" << stamp << "] DEBUG:" << message;
+        std::cout << stamp << " [DEBUG]" << message;
     }
 
     void Logger::Info(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << "[" << stamp << "] INFO:" << message;
+        std::cout << stamp << " [INFO]" << message;
     }
 
     void Logger::Warn(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << "[" << stamp << "] WARNING:" << message;
+        std::cout << stamp << " [WARNING]" << message;
     }
 
     void Logger::Error(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << "[" << stamp << "] ERROR:" << message;
+        std::cout << stamp << " [ERROR]" << message;
     }
 
     void Logger::Fatal(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << "[" << stamp << "] FATAL:" << message;
+        std::cout << stamp << " [FATAL]" << message;
         exit(1);
     }
 
-    // This sucks
     std::string Logger::GetTimestamp() {
 
-        auto now = time(0);
-        auto local = localtime(&now);
+        auto now = std::time(nullptr);
+        auto local = *std::localtime(&now);
 
-        auto year = local->tm_year;
-        auto month = local->tm_mon;
-        auto day = local->tm_mday;
-        auto hour = local->tm_hour;
-        auto minute = local->tm_min;
-        auto second = local->tm_sec;
-        auto zone = local->tm_zone;
+        // Using a stringstream is probably not ideal
+        std::stringstream stamp;
+        stamp << std::put_time(&local, "%F %T %Z");
 
-        std::stringstream timestamp;
-        timestamp << year << "-"
-            << month << "-"
-            << day << " "
-            << hour << ":"
-            << minute << ":"
-            << second << zone;
-
-        return timestamp.str();
+        return stamp.str();
 
     }
 
