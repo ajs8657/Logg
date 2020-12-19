@@ -16,27 +16,27 @@ namespace Logg {
 
     void Logger::Debug(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [DEBUG]" << message;
+        std::cout << stamp << " [DEBUG] " << message << std::endl;
     }
 
     void Logger::Info(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [INFO]" << message;
+        std::cout << stamp << " [INFO] " << message << std::endl;
     }
 
     void Logger::Warn(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [WARNING]" << message;
+        std::cout << stamp << " [WARNING] " << message << std::endl;
     }
 
     void Logger::Error(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [ERROR]" << message;
+        std::cout << stamp << " [ERROR] " << message << std::endl;
     }
 
     void Logger::Fatal(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [FATAL]" << message;
+        std::cout << stamp << " [FATAL] " << message << std::endl;
         exit(1);
     }
 
@@ -47,7 +47,7 @@ namespace Logg {
 
         // Using a stringstream is probably not ideal
         std::stringstream stamp;
-        stamp << std::put_time(&local, "%F %T %Z");
+        stamp << std::put_time(&local, "[%F %T%Z]");
 
         return stamp.str();
 
