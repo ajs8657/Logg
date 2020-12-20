@@ -4,9 +4,19 @@
 
 namespace Logg {
 
+    enum class LogLevel {
+        Debug,
+        Info,
+        Warn,
+        Error,
+        Fatal
+    };
+
     class Logger {
 
     public:
+
+        const std::string& Name;
 
         Logger(const std::string& name);
 
@@ -20,9 +30,11 @@ namespace Logg {
 
         void Fatal(const std::string& message);
 
+        void LogMessage(LogLevel level, const std::string& message);
+
     private:
 
-        const std::string& name;
+        std::string nameLabel;
 
         std::string GetTimestamp();
 

@@ -9,55 +9,60 @@
 namespace Logg {
 
     // Construct a new Logger with a name
-    Logger::Logger(const std::string& name) : name(name) {
+    Logger::Logger(const std::string& name) : Name(name) {
         // Log that this Logger has been created
+        nameLabel = " [" + name + "]";
         Info("Created logger: " + name);
     }
 
     void Logger::Debug(const std::string& message) {
-        auto stamp = GetTimestamp();
-        std::cout << stamp
-            << " [" << name << "]"
-            << " [DEBUG] "
-            << message
-            << std::endl;
+        LogMessage(LogLevel::Debug, message);
     }
 
     void Logger::Info(const std::string& message) {
-        auto stamp = GetTimestamp();
-        std::cout << stamp
-            << " [" << name << "]"
-            << " [INFO] "
-            << message
-            << std::endl;
+        LogMessage(LogLevel::Info, message);
     }
 
     void Logger::Warn(const std::string& message) {
-        auto stamp = GetTimestamp();
-        std::cout << stamp
-            << " [" << name << "]"
-            << " [WARN] "
-            << message
-            << std::endl;
+        LogMessage(LogLevel::Warn, message);
     }
 
     void Logger::Error(const std::string& message) {
-        auto stamp = GetTimestamp();
-        std::cout << stamp
-            << " [" << name << "]"
-            << " [ERROR] "
-            << message
-            << std::endl;
+        LogMessage(LogLevel::Error, message);
     }
 
     void Logger::Fatal(const std::string& message) {
-        auto stamp = GetTimestamp();
-        std::cout << stamp
-            << " [" << name << "]"
-            << " [FATAL] "
-            << message
-            << std::endl;
+        LogMessage(LogLevel::Fatal, message);
         exit(1);
+    }
+
+    void Logger::LogMessage(LogLevel level, const std::string& message) {
+        auto stamp = GetTimestamp();
+
+        std::string levelLabel;
+        switch (level) {
+        case LogLevel::Debug:
+            levelLabel = " [DEBUG]";
+            break;
+        case LogLevel::Info:
+            levelLabel = " [INFO]";
+            break;
+        case LogLevel::Warn:
+            levelLabel = " [WARN]";
+            break;
+        case LogLevel::Error:
+            levelLabel = " [ERROR]";
+            break;
+        case LogLevel::Fatal:
+            levelLabel = " [FATAL]";
+            break;
+        }
+
+        std::cout << stamp
+            << nameLabel
+            << levelLabel
+            << " " << message
+            << std::endl;
     }
 
     std::string Logger::GetTimestamp() {
