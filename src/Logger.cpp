@@ -16,27 +16,47 @@ namespace Logg {
 
     void Logger::Debug(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [DEBUG] " << message << std::endl;
+        std::cout << stamp
+            << " [" << name << "]"
+            << " [DEBUG] "
+            << message
+            << std::endl;
     }
 
     void Logger::Info(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [INFO] " << message << std::endl;
+        std::cout << stamp
+            << " [" << name << "]"
+            << " [INFO] "
+            << message
+            << std::endl;
     }
 
     void Logger::Warn(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [WARNING] " << message << std::endl;
+        std::cout << stamp
+            << " [" << name << "]"
+            << " [WARN] "
+            << message
+            << std::endl;
     }
 
     void Logger::Error(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [ERROR] " << message << std::endl;
+        std::cout << stamp
+            << " [" << name << "]"
+            << " [ERROR] "
+            << message
+            << std::endl;
     }
 
     void Logger::Fatal(const std::string& message) {
         auto stamp = GetTimestamp();
-        std::cout << stamp << " [FATAL] " << message << std::endl;
+        std::cout << stamp
+            << " [" << name << "]"
+            << " [FATAL] "
+            << message
+            << std::endl;
         exit(1);
     }
 
