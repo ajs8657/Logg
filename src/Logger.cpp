@@ -6,36 +6,38 @@
 
 namespace Logg {
 
+    const Logger Logger::GlobalLog("Global Log");
+
     Logger::Logger(const std::string& name) : Name(name) {
         // Log that this Logger has been created
         nameLabel = " [" + name + "]";
         Info("Created logger: " + name);
     }
 
-    void Logger::Debug(const std::string& message) {
+    void Logger::Debug(const std::string& message) const {
 #ifdef NDEBUG
         LogMessage(LogLevel::Debug, message);
 #endif
     }
     
-    void Logger::Info(const std::string& message) {
+    void Logger::Info(const std::string& message) const {
         LogMessage(LogLevel::Info, message);
     }
 
-    void Logger::Warn(const std::string& message) {
+    void Logger::Warn(const std::string& message) const {
         LogMessage(LogLevel::Warn, message);
     }
 
-    void Logger::Error(const std::string& message) {
+    void Logger::Error(const std::string& message) const {
         LogMessage(LogLevel::Error, message);
     }
 
-    void Logger::Fatal(const std::string& message) {
+    void Logger::Fatal(const std::string& message) const {
         LogMessage(LogLevel::Fatal, message);
         exit(1);
     }
 
-    void Logger::LogMessage(LogLevel level, const std::string& message) {
+    void Logger::LogMessage(LogLevel level, const std::string& message) const {
         auto stamp = GetTimestamp();
 
         std::string levelLabel;
@@ -64,7 +66,7 @@ namespace Logg {
             << std::endl;
     }
 
-    std::string Logger::GetTimestamp() {
+    std::string Logger::GetTimestamp() const {
         auto now = std::time(nullptr);
         auto local = *std::localtime(&now);
 

@@ -18,6 +18,9 @@ namespace Logg {
 
     public:
 
+        // A global Logger that can be accessed without making your own
+        static const Logger GlobalLog;
+
         // Raw name of this logger
         const std::string& Name;
 
@@ -25,22 +28,22 @@ namespace Logg {
         Logger(const std::string& name);
 
         // Print a debug log message
-        void Debug(const std::string& message);
+        void Debug(const std::string& message) const;
 
         // Print an info log message
-        void Info(const std::string& message);
+        void Info(const std::string& message) const;
 
         // Print a warning log message
-        void Warn(const std::string& message);
+        void Warn(const std::string& message) const;
 
         // Print an error log message
-        void Error(const std::string& message);
+        void Error(const std::string& message) const;
 
         // Print a fatal log message that stops program execution
-        void Fatal(const std::string& message);
+        void Fatal(const std::string& message) const;
 
         // Print a log message with a specified LogLevel
-        void LogMessage(LogLevel level, const std::string& message);
+        void LogMessage(LogLevel level, const std::string& message) const;
 
     private:
 
@@ -48,7 +51,7 @@ namespace Logg {
         std::string nameLabel;
 
         // Get a formatted timestamp
-        std::string GetTimestamp();
+        std::string GetTimestamp() const;
 
     };
 
