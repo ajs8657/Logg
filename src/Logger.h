@@ -1,5 +1,6 @@
 #pragma once
 
+#include <sstream>
 #include <string>
 
 namespace Logg {
@@ -26,6 +27,24 @@ namespace Logg {
 
         // Construct a new Logger with a name
         Logger(const std::string& name);
+
+        // Print a debug log stream
+        void Debug(const std::ostringstream& stream) const;
+
+        // Print an info log stream
+        void Info(const std::ostringstream& stream) const;
+
+        // Print a warning log stream
+        void Warn(const std::ostringstream& stream) const;
+
+        // Print an error log stream
+        void Error(const std::ostringstream& stream) const;
+
+        // Print a fatal log stream that stops program execution
+        void Fatal(const std::ostringstream& stream) const;
+
+        // Print a log stream with a specified LogLevel
+        void LogMessage(LogLevel level, const std::ostringstream& stream) const;
 
         // Print a debug log message
         void Debug(const std::string& message) const;
