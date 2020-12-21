@@ -8,7 +8,6 @@
 
 namespace Logg {
 
-    // Construct a new Logger with a name
     Logger::Logger(const std::string& name) : Name(name) {
         // Log that this Logger has been created
         nameLabel = " [" + name + "]";
@@ -20,7 +19,7 @@ namespace Logg {
         LogMessage(LogLevel::Debug, message);
 #endif
     }
-
+    
     void Logger::Info(const std::string& message) {
         LogMessage(LogLevel::Info, message);
     }
@@ -68,7 +67,6 @@ namespace Logg {
     }
 
     std::string Logger::GetTimestamp() {
-
         auto now = std::time(nullptr);
         auto local = *std::localtime(&now);
 
@@ -77,7 +75,6 @@ namespace Logg {
         stamp << std::put_time(&local, "[%F %T %Z]");
 
         return stamp.str();
-
     }
 
 }
