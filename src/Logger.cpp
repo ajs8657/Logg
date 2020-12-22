@@ -12,6 +12,10 @@ namespace Logg {
         Info("Created logger: " + name);
     }
 
+    Logger::~Logger() {
+        Info("Destroying logger: " + Name);
+    }
+
     void Logger::Debug(const std::string& message) const {
 #ifdef NDEBUG
         LogMessage(LogLevel::Debug, message);

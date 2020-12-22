@@ -25,6 +25,15 @@ namespace Logg {
         // Construct a new Logger with a name
         Logger(const std::string& name);
 
+        // Destroy this Logger
+        ~Logger();
+
+        // Disable the copy constructor
+        Logger(const Logger& other) = delete;
+
+        // Disable copy assignment
+        Logger& operator=(const Logger& other) = delete;
+
         // Print a debug log message
         void Debug(const std::string& message) const;
 
