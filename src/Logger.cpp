@@ -79,4 +79,12 @@ namespace Logg {
         return stamp.str();
     }
 
+    std::string Logger::MergeStrings(std::initializer_list<std::string> strings) const {
+        std::string result = "";
+        for (std::string s : strings) {
+            result += s;
+        }
+        return result;
+    }
+
 }

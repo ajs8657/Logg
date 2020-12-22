@@ -1,6 +1,5 @@
 #pragma once
 
-#include <sstream>
 #include <string>
 
 namespace Logg {
@@ -59,6 +58,17 @@ namespace Logg {
 
         // Get a formatted timestamp
         std::string GetTimestamp() const;
+
+        // Merge a list of strings into one
+        std::string MergeStrings(std::initializer_list<std::string> strings) const;
+
+        // Use std::ostringstream to convert any type to a string
+        template<typename T>
+        std::string ToString(T value) const {
+            std::ostringstream stream;
+            stream << value;
+            return stream.str();
+        }
 
     };
 
