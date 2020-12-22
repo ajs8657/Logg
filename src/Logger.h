@@ -19,32 +19,11 @@ namespace Logg {
 
     public:
 
-        // A global Logger that can be accessed without making your own
-        static const Logger GlobalLog;
-
         // Raw name of this logger
         const std::string& Name;
 
         // Construct a new Logger with a name
         Logger(const std::string& name);
-
-        // Print a debug log stream
-        void Debug(const std::ostringstream& stream) const;
-
-        // Print an info log stream
-        void Info(const std::ostringstream& stream) const;
-
-        // Print a warning log stream
-        void Warn(const std::ostringstream& stream) const;
-
-        // Print an error log stream
-        void Error(const std::ostringstream& stream) const;
-
-        // Print a fatal log stream that stops program execution
-        void Fatal(const std::ostringstream& stream) const;
-
-        // Print a log stream with a specified LogLevel
-        void LogMessage(LogLevel level, const std::ostringstream& stream) const;
 
         // Print a debug log message
         void Debug(const std::string& message) const;
@@ -73,5 +52,8 @@ namespace Logg {
         std::string GetTimestamp() const;
 
     };
+
+    // A global Logger that can be accessed without making your own
+    const Logger GlobalLog("Global Log");
 
 }
