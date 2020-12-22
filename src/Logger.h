@@ -33,6 +33,74 @@ namespace Logg {
         // Disable copy assignment
         Logger& operator=(const Logger& other) = delete;
 
+        /* Variadic Logging functions */
+
+        // Print a debug log message
+        template<typename... Args>
+        void Debug(const Args&... args) const {
+#ifdef NDEBUG
+            LogMessage(LogLevel::Debug, MergeStrings({ ToString(args) ... }));
+#endif
+        }
+
+        // Print an info log message
+        template<typename... Args>
+        void Info(const Args&... args) const {
+            LogMessage(LogLevel::Info, MergeStrings({ ToString(args) ... }));
+        }
+
+        // Print a warning log message
+        template<typename... Args>
+        void Warn(const Args&... args) const {
+            LogMessage(LogLevel::Warn, MergeStrings({ ToString(args) ... }));
+        }
+
+        // Print an error log message
+        template<typename... Args>
+        void Error(const Args&... args) const {
+            LogMessage(LogLevel::Error, MergeStrings({ ToString(args) ... }));
+        }
+
+        // Print a fatal log message that stops program execution
+        template<typename... Args>
+        void Fatal(const Args&... args) const {
+            LogMessage(LogLevel::Fatal, MergeStrings({ ToString(args) ... }));
+        }
+
+        // Print a log message with a specified LogLevel
+        template<typename... Args>
+        void LogMessage(LogLevel level, const Args&... args) const {
+
+            auto stamp = GetTimestamp();
+
+            std::string levelLabel;
+            switch (level) {
+            case LogLevel::Debug:
+                levelLabel = " [DEBUG]";
+                break;
+            case LogLevel::Info:
+                levelLabel = " [INFO]";
+                break;
+            case LogLevel::Warn:
+                levelLabel = " [WARN]";
+                break;
+            case LogLevel::Error:
+                levelLabel = " [ERROR]";
+                break;
+            case LogLevel::Fatal:
+                levelLabel = " [FATAL]";
+                break;
+            }
+
+            std::cout << stamp
+                << nameLabel
+                << levelLabel
+                << " " << MergeStrings({ ToString(args) ... })
+                << std::endl;
+        }
+
+        /* Single String Logging functions */
+
         // Print a debug log message
         void Debug(const std::string& message) const;
 
