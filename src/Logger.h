@@ -40,7 +40,7 @@ namespace Logg {
         // Print a debug log message
         template<typename... Args>
         void Debug(const Args&... args) const {
-#ifdef NDEBUG
+#ifdef DEBUG
             LogMessage(LogLevel::Debug, MergeStrings({ ToString(args) ... }));
 #endif
         }

@@ -17,7 +17,7 @@ namespace Logg {
     }
 
     void Logger::Debug(const std::string& message) const {
-#ifdef NDEBUG
+#ifdef DEBUG
         LogMessage(LogLevel::Debug, message);
 #endif
     }
