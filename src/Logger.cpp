@@ -4,8 +4,6 @@
 
 namespace Logg {
 
-    const Logger GlobalLog("Global Log");
-
     Logger::Logger(const std::string& name) : Name(name) {
         // Log that this Logger has been created
         nameLabel = " [" + name + "]";

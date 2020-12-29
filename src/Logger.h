@@ -142,7 +142,4 @@ namespace Logg {
 
     };
 
-    // A global Logger that can be accessed without making your own
-    extern const Logger GlobalLog;
-
 }
