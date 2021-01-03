@@ -17,4 +17,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 # Make sure the compiler can find include files for our library
 # when other libraries or executables link to this one
-target_include_directories(${PROJECT_NAME} PUBLIC ${SRC_DIR})
+set(INCLUDE_DIR "include")
+target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDE_DIR})
