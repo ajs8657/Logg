@@ -3,8 +3,9 @@
 
 # Unignore these directories
 !.gitignore
+!/external
+!/include
 !/src
-!/vendor
 
 # Unignore these files
 !README.md
