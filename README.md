@@ -12,7 +12,7 @@ You can also use `LogMessage(LogLevel::Info, message);` as a different way to ou
 
 Note that:
 
-`Logger::Debug()` outputs its message only if the `NDEBUG` macro is defined
+`Logger::Debug()` outputs its message only if the `DEBUG` macro is defined
 
 `Logger::Fatal()` prints a fatal message, then terminates the program with `exit(1)`
 
